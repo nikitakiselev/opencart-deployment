@@ -34,5 +34,6 @@ sed -i "s#DIR_SYSTEM \. 'storage/#'/web/storage/#g" /web/upload/admin/config.php
 rm -rf /web/upload/install
 
 chown -R www-data:www-data /web/storage
+chmod 755 /web/storage
 
 echo "OcStore successfully installed."
