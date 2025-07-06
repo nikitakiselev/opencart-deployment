@@ -5,7 +5,7 @@ services:
       dockerfile: docker/opencart/Dockerfile
     platform: linux/amd64
     volumes:
-      - "./storage:/web/storage"
+      - ocstore_data:/web/storage
     ports:
       - "8010:80"
     restart: always
@@ -39,3 +39,4 @@ services:
 
 volumes:
   mysql_data:
+  ocstore_data:
