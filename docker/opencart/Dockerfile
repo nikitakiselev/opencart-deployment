@@ -21,4 +21,6 @@ RUN /scripts/download_oc_store.sh
 
 COPY docker/apache2/cors.conf /opt/docker/etc/httpd/vhost.common.d/cors.conf
 
+RUN chown -R www-data:www-data /web/storage
+
 ENTRYPOINT ["/scripts/entrypoint.sh"]
