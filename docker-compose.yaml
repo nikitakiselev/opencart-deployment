@@ -1,0 +1,41 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: docker/opencart/Dockerfile
+    platform: linux/amd64
+    volumes:
+      - "./storage:/web/storage"
+    ports:
+      - "8010:80"
+    restart: always
+    environment:
+      - PHP_DISPLAY_ERRORS=1
+      - DB_HOST=mysql
+      - DB_USERNAME=root
+      - DB_PASSWORD=secret
+      - DB_DATABASE=ocstore3
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin
+      - ADMIN_EMAIL=youremail@example.com
+    depends_on:
+      mysql:
+        condition: service_healthy
+        restart: true
+
+  mysql:
+    image: mariadb:10.2.7
+    platform: linux/amd64
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=ocstore3
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
