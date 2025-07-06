@@ -8,30 +8,26 @@ services:
       - ocstore_data:/web/storage
     ports:
       - "8010:80"
-    restart: always
-    environment:
-      - PHP_DISPLAY_ERRORS=1
-      - DB_HOST=mysql
-      - DB_USERNAME=root
-      - DB_PASSWORD=secret
-      - DB_DATABASE=ocstore3
-      - ADMIN_USERNAME=admin
-      - ADMIN_PASSWORD=admin
-      - ADMIN_EMAIL=youremail@example.com
+    restart: unless-stopped
+    env_file: ".env"
     depends_on:
       mysql:
         condition: service_healthy
         restart: true
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
   mysql:
     image: mariadb:10.2.7
     platform: linux/amd64
-    restart: always
-    environment:
-      - MYSQL_ROOT_PASSWORD=secret
-      - MYSQL_DATABASE=ocstore3
+    restart: unless-stopped
+    env_file: ".env"
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 30s
       timeout: 20s
       retries: 10
     volumes:

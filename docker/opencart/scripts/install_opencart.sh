@@ -22,7 +22,7 @@ php cli_install.php install \
   --username "$ADMIN_USERNAME" \
   --password "$ADMIN_PASSWORD" \
   --email "$ADMIN_EMAIL" \
-  --http_server http://localhost:8000/;
+  --http_server "$ADMIN_PASSWORD";
 
 echo "Moving storage folder outside the system."
 cp -r /web/upload/system/storage/* /web/storage/
