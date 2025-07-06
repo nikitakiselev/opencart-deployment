@@ -22,7 +22,7 @@ php cli_install.php install \
   --username "$ADMIN_USERNAME" \
   --password "$ADMIN_PASSWORD" \
   --email "$ADMIN_EMAIL" \
-  --http_server "$ADMIN_PASSWORD";
+  --http_server "$SERVER_URL";
 
 echo "Moving storage folder outside the system."
 cp -r /web/upload/system/storage/* /web/storage/
@@ -33,7 +33,10 @@ sed -i "s#DIR_SYSTEM \. 'storage/#'/web/storage/#g" /web/upload/admin/config.php
 
 rm -rf /web/upload/install
 
-chown -R www-data:www-data /web/storage
-chmod 755 /web/storage
+echo "Set permissions"
+chown -R 1000:1000 /web/storage
+chmod -R 755 /web/storage
+chown -R 1000:1000 /web/upload
+chmod -R 755 /web/upload
 
 echo "OcStore successfully installed."
