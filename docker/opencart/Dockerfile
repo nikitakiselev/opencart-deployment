@@ -1,3 +1,4 @@
+ARG PHP_VERSION=7.3
 FROM webdevops/php-apache-dev:${PHP_VERSION}
 
 # https://github.com/ocStore/ocStore/tags

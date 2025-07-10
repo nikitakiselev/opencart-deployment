@@ -13,7 +13,7 @@ stats:
 deploy:
 	git fetch origin && \
 	git reset --hard origin/master && \
-	$(MAKE) up --build
+	docker compose up --build -d
 
 ssh:
 	docker compose exec -w /web web bash

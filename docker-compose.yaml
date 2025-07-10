@@ -3,6 +3,8 @@ services:
     build:
       context: .
       dockerfile: docker/opencart/Dockerfile
+      args:
+        PHP_VERSION: ${PHP_VERSION}
     platform: linux/amd64
     volumes:
       - ocstore_data:/web/storage
