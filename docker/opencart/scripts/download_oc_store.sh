@@ -15,10 +15,10 @@ wget -P "$TMP_DIR" "$DOWNLOAD_URL"
 
 echo "🗃 Unzipping..."
 mkdir -p /web
-unzip -q "$FILE_PATH" -d ./web
+unzip -q "$FILE_PATH" -d /web
 
 SOURCE_DIR=/web/ocStore-${OCSTORE_VERSION//v/}
-rsync -a $SOURCE_DIR/* ./web
+rsync -a $SOURCE_DIR/* /web
 rm -rf "$SOURCE_DIR"
 
 # chmod -R 775 /web

@@ -18,8 +18,6 @@ COPY docker/opencart/scripts /scripts
 
 # RUN apt-get update && apt-get -y install mysql-client
 
-RUN /scripts/download_oc_store.sh
-
 # COPY docker/apache2/cors.conf /opt/docker/etc/httpd/vhost.common.d/cors.conf
 
 ENTRYPOINT ["/scripts/entrypoint.sh"]

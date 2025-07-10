@@ -25,6 +25,7 @@ php cli_install.php install \
   --http_server "$SERVER_URL";
 
 echo "Moving storage folder outside the system."
+mkdir -p /web/storage
 cp -r /web/upload/system/storage/* /web/storage/
 rm -rf /web/upload/system/storage
 
