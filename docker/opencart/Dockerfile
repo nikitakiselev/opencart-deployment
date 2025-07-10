@@ -1,4 +1,4 @@
-FROM webdevops/php-apache-dev:7.3
+FROM webdevops/php-apache-dev:${PHP_VERSION}
 
 # https://github.com/ocStore/ocStore/tags
 ENV OCSTORE_VERSION=v3.0.3.7
@@ -19,6 +19,6 @@ COPY docker/opencart/scripts /scripts
 
 RUN /scripts/download_oc_store.sh
 
-COPY docker/apache2/cors.conf /opt/docker/etc/httpd/vhost.common.d/cors.conf
+# COPY docker/apache2/cors.conf /opt/docker/etc/httpd/vhost.common.d/cors.conf
 
 ENTRYPOINT ["/scripts/entrypoint.sh"]

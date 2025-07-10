@@ -1,4 +1,4 @@
-start:
+up:
 	docker compose up -d
 
 stop:
@@ -13,7 +13,7 @@ stats:
 deploy:
 	git fetch origin && \
 	git reset --hard origin/master && \
-	$(MAKE) start
+	$(MAKE) up --build
 
 ssh:
 	docker compose exec -w /web web bash
